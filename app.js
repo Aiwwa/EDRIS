@@ -1,47 +1,48 @@
-// localStorage.clear()
+document.addEventListener('DOMContentLoaded', () => {
 
-/*document.addEventListener('DOMContentLoaded', () => {
+  const TITLES_KEY = 'titles';
+  const titles = localStorage.getItem(TITLES_KEY) ? JSON.parse(localStorage.getItem(TITLES_KEY)) : [];
 
-Buvau idejas visa koda bet nepadre jokio skirtumo
+  const addBtn = document.querySelector('#add-dish');
+  const nameInput = document.querySelector('#name-input');
+  const mainList = document.querySelector('.dishes-list');
 
-})*/
+  addBtn.addEventListener('click', () => {
 
-const TITLES_KEY = 'titles';
-const titles = localStorage.getItem(TITLES_KEY) ? JSON.parse(localStorage.getItem(TITLES_KEY)) : [];
+    createDichCard();
+  })
 
-const addBtn = document.querySelector('#add-dish');
-const nameInput = document.querySelector('#name-input');
-const mainList = document.querySelector('.dishes-list');
+  function createDichCard() {
+    const div = document.createElement('div');
+    const title = document.createElement('h3');
+    title.innerText = nameInput.value; //This element value will go to local storage
+    const list = document.createElement('ul');
 
-addBtn.addEventListener('click', () => {
+    const addItems = document.createElement('p');
+    addItems.innerText = 'Add items';
 
-  createDichCard();
-})
+    const input = document.createElement('input');
+    const btn = document.createElement('button');
+    btn.innerText = 'Add';
 
-function createDichCard() {
-  const div = document.createElement('div');
-  const title = document.createElement('h3');
-  title.innerText = nameInput.value; //This element value will go to local storage
-  const list = document.createElement('ul');
+    div.appendChild(title);
+    div.appendChild(list);
+    div.appendChild(addItems);
+    addItems.appendChild(input);
+    addItems.appendChild(btn);
+    mainList.appendChild(div);
 
-  const addItems = document.createElement('p');
-  addItems.innerText = 'Add items';
+    titles.push(title.innerText);
 
-  const input = document.createElement('input');
-  const btn = document.createElement('button');
-  btn.innerText = 'Add';
+    localStorage.setItem(TITLES_KEY, JSON.stringify(titles));
+  }
 
-  div.appendChild(title);
-  div.appendChild(list);
-  div.appendChild(addItems);
-  addItems.appendChild(input);
-  addItems.appendChild(btn);
-  mainList.appendChild(div);
+  if (titles.length) {
+    createDichCard();
+  }
 
-  titles.push(title.innerText);
+});
 
-  localStorage.setItem(TITLES_KEY, JSON.stringify(titles));
-}
 
 
 
