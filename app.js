@@ -15,10 +15,10 @@ const mainList = document.querySelector('.dishes-list');
 
 addBtn.addEventListener('click', () => {
 
-  createDishList();
+  createDichCard();
 })
 
-function createDishList() {
+function createDichCard() {
   const div = document.createElement('div');
   const title = document.createElement('h3');
   title.innerText = nameInput.value; //This element value will go to local storage
