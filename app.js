@@ -1,4 +1,6 @@
 // document.addEventListener('DOMContentLoaded', () => { })
+// localStorage.clear()
+
 
 const TITLES_KEY = 'titles';
 const titles = localStorage.getItem(TITLES_KEY) ? JSON.parse(localStorage.getItem(TITLES_KEY)) : [];
@@ -35,6 +37,7 @@ function createDishList() {
 
   localStorage.setItem(TITLES_KEY, JSON.stringify(titles));
 }
+
 
 
 
