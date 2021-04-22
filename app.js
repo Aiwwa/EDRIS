@@ -1,3 +1,4 @@
+// document.addEventListener('DOMContentLoaded', () => { })
 
 const TITLES_KEY = 'titles';
 const titles = localStorage.getItem(TITLES_KEY) ? JSON.parse(localStorage.getItem(TITLES_KEY)) : [];
@@ -6,16 +7,14 @@ const addBtn = document.querySelector('#add-dish');
 const nameInput = document.querySelector('#name-input');
 const mainList = document.querySelector('.dishes-list');
 
-
-addBtn.addEventListener('click', (event) => {
-  event.preventDefault();
+addBtn.addEventListener('click', () => {
   createDishList();
 })
 
 function createDishList() {
   const div = document.createElement('div');
   const title = document.createElement('h3');
-  title.innerText = nameInput.value;
+  title.innerText = nameInput.value; //This element value will go to local storage
   const list = document.createElement('ul');
 
   const addItems = document.createElement('p');
@@ -38,7 +37,6 @@ function createDishList() {
 }
 
 
-document.addEventListener('DOMContentLoaded', () => { })
 
 
 
