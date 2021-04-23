@@ -7,6 +7,7 @@ const dishNameInput = document.querySelector('#name-input');
 const dishesContainer = document.querySelector('.dishes-container');
 let dishName;
 
+const editContainer = document.querySelector('.edit-output');
 const editInput = document.querySelector('.edit-output input');
 const editInputSave = document.querySelector('.edit-output button');
 
@@ -52,15 +53,17 @@ function createDishCardToUI() {
 
 function editDishTitle() {
   document.querySelectorAll('.style .edit').forEach((el, idx) => {
-    el.addEventListener('click', () => {
+    el.addEventListener('click', (event) => {
       dishes.forEach((dish, index) => {
         if (idx === index) {
-
-          dishes[index] = editInput.value;
-          location.reload();
-          localStorage.setItem('dishes', JSON.stringify(dishes));
-
-
+          editContainer.classList.add('d-block')
+          if (event) {
+            editInputSave.addEventListener('click', () => {
+              location.reload();
+              dishes[index] = editInput.value;
+              localStorage.setItem('dishes', JSON.stringify(dishes));
+            });
+          }
         }
       })
     });
@@ -74,7 +77,6 @@ function removeDish() {
       dishes.forEach((dish, index) => {
         if (idx === index) {
           el.parentElement.remove();
-
           dishes.splice(`${idx}`, 1);
           localStorage.setItem('dishes', JSON.stringify(dishes));
           location.reload();
