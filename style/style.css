@@ -13,4 +13,12 @@
   padding: 0.4rem;
   background: #9b8686;
 }
+
+.d-none {
+  display: none;
+}
+
+.d-block {
+  display: block;
+}
 /*# sourceMappingURL=style.css.map */
