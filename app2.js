@@ -69,14 +69,11 @@ function removeDish() {
     el.addEventListener('click', () => {
       dishes.forEach((dish, index) => {
         if (idx === index) {
+          el.parentElement.remove();
 
-          console.log(dishes[index])
-          // localStorage.removeItem('dishes', JSON.stringify(dishes))
-
-
-          // localStorage.setItem('dishes', JSON.stringify(dishes));
-
-          // location.reload();
+          dishes.splice(`${idx}`, 1);
+          localStorage.setItem('dishes', JSON.stringify(dishes));
+          location.reload();
         }
       })
     });
