@@ -3,4 +3,14 @@
   padding: 1rem;
   background-color: #887f92;
 }
+
+.d-inline {
+  display: inline-block;
+}
+
+.fas {
+  margin: 0.6rem;
+  padding: 0.4rem;
+  background: #9b8686;
+}
 /*# sourceMappingURL=style.css.map */
