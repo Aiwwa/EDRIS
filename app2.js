@@ -1,4 +1,5 @@
 const DISHES_STORAGE_KEY = 'dishes';
+// const EDITED
 let dishes = localStorage.getItem(DISHES_STORAGE_KEY) ? JSON.parse(localStorage.getItem(DISHES_STORAGE_KEY)) : [];
 
 const addBtn = document.querySelector('#add-dish');
@@ -8,7 +9,8 @@ let dishName;
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  saveDishCardToUI();
+  createDishCardToUI();
+  editDishTitle();
 })
 
 addBtn.addEventListener('click', () => {
@@ -23,7 +25,8 @@ function createDishCardTitle() {
   dishes.push(`${dishName}`);
 }
 
-function saveDishCardToUI() {
+function createDishCardToUI() {
+  // Element is value form 25line dishes.push(`${dishName}`)
   dishes.forEach(element => {
     const div = document.createElement('div');
     div.classList.add('style');
@@ -35,5 +38,25 @@ function saveDishCardToUI() {
     dishesContainer.appendChild(div)
   });
 }
+
+
+function editDishTitle() {
+  document.querySelectorAll('.dishes-container div p').forEach((el, idx) => {
+    el.addEventListener('click', () => {
+
+      dishes.forEach((dish, index) => {
+
+        if (idx === index) {
+          dishes[index] = 'dsc';
+        }
+
+      })
+
+    });
+  })
+}
+
+
+
 
 
