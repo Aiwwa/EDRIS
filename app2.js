@@ -1,5 +1,4 @@
 const DISHES_STORAGE_KEY = 'dishes';
-// const EDITED
 let dishes = localStorage.getItem(DISHES_STORAGE_KEY) ? JSON.parse(localStorage.getItem(DISHES_STORAGE_KEY)) : [];
 
 const addBtn = document.querySelector('#add-dish');
@@ -18,11 +17,18 @@ document.addEventListener('DOMContentLoaded', () => {
   removeDish();
 })
 
+dishNameInput.addEventListener('keyup', (e) => {
+  e.preventDefault();
+  if ((e.keyCode === 13)) {
+    addBtn.click();
+  }
+});
+
 addBtn.addEventListener('click', () => {
   createDishCardTitle();
   localStorage.setItem('dishes', JSON.stringify(dishes));
   location.reload();
-})
+});
 
 function createDishCardTitle() {
   dishName = dishNameInput.value;
@@ -58,6 +64,12 @@ function editDishTitle() {
         if (idx === index) {
           editContainer.classList.add('d-block')
           if (event) {
+            editInput.addEventListener('keyup', (e) => {
+              e.preventDefault();
+              if ((e.keyCode === 13)) {
+                editInputSave.click();
+              }
+            });
             editInputSave.addEventListener('click', () => {
               location.reload();
               dishes[index] = editInput.value;
@@ -65,9 +77,9 @@ function editDishTitle() {
             });
           }
         }
-      })
+      });
     });
-  })
+  });
 }
 
 
@@ -81,9 +93,9 @@ function removeDish() {
           localStorage.setItem('dishes', JSON.stringify(dishes));
           location.reload();
         }
-      })
+      });
     });
-  })
+  });
 }
 
 
