@@ -43,15 +43,12 @@ function createDishCardToUI() {
 function editDishTitle() {
   document.querySelectorAll('.dishes-container div p').forEach((el, idx) => {
     el.addEventListener('click', () => {
-
       dishes.forEach((dish, index) => {
-
         if (idx === index) {
           dishes[index] = 'dsc';
+          localStorage.setItem('dishes', JSON.stringify(dishes));
         }
-
       })
-
     });
   })
 }
