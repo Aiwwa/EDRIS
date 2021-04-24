@@ -122,17 +122,7 @@ function removeDish() {
   });
 }
 
-
-
-
-
-
-
-
-
-
-
-
+// Other dynamic element for future
 // function createEditElement() {
 //   const field = document.querySelector('el.previousSibling')
 //   const div = document.createElement('div');
