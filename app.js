@@ -52,6 +52,7 @@ function createDishCardToUI() {
     div.appendChild(p);
     div.appendChild(i);
     div.appendChild(remove);
+
     dishCardTitle = p.textContent = element;
     p.textContent = element;
 
@@ -64,9 +65,7 @@ function createDishCardToUI() {
 function createListElement() {
   const listContainer = document.createElement('div');
   listContainer.classList.add('list-container');
-  let titleName;
-  // Geting name 
-  //
+
   const title = document.createElement('h4');
   title.textContent = `${dishCardTitle}`;
   const div = document.createElement('div');
