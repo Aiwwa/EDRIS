@@ -12,7 +12,7 @@ const editContainer = document.querySelector('.edit-output');
 const editInput = document.querySelector('.edit-output input');
 const editInputSave = document.querySelector('.edit-output button');
 
-
+//Events
 document.addEventListener('DOMContentLoaded', () => {
   createDishCardToUI();
   editDishTitle();
@@ -32,6 +32,8 @@ addBtn.addEventListener('click', () => {
   location.reload();
 });
 
+
+//Functions
 function createDishCardTitle() {
   dishes.push(`${dishNameInput.value}`);
   dishNameInput.value = '';
@@ -62,24 +64,6 @@ function createDishCardToUI() {
   });
 }
 
-function createListElement() {
-  const listContainer = document.createElement('div');
-  listContainer.classList.add('list-container');
-
-  const title = document.createElement('h4');
-  title.textContent = `${dishCardTitle}`;
-  const div = document.createElement('div');
-  div.classList.add('add-item');
-  const listDiv = document.createElement('div');
-  listDiv.classList.add('list-item-div');
-
-  listContainer.appendChild(title);
-  listContainer.appendChild(div);
-  listContainer.appendChild(listDiv);
-
-  dishesList.appendChild(listContainer);
-}
-
 function editDishTitle() {
   document.querySelectorAll('.style .edit').forEach((el, idx) => {
     el.addEventListener('click', (event) => {
@@ -105,7 +89,6 @@ function editDishTitle() {
   });
 }
 
-
 function removeDish() {
   document.querySelectorAll('.style .remove').forEach((el, idx) => {
     el.addEventListener('click', () => {
@@ -119,6 +102,24 @@ function removeDish() {
       });
     });
   });
+}
+
+function createListElement() {
+  const listContainer = document.createElement('div');
+  listContainer.classList.add('list-container');
+
+  const title = document.createElement('h4');
+  title.textContent = `${dishCardTitle}`;
+  const div = document.createElement('div');
+  div.classList.add('add-item');
+  const listDiv = document.createElement('div');
+  listDiv.classList.add('list-item-div');
+
+  listContainer.appendChild(title);
+  listContainer.appendChild(div);
+  listContainer.appendChild(listDiv);
+
+  dishesList.appendChild(listContainer);
 }
 
 // Other dynamic element for future
