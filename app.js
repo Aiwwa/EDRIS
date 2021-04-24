@@ -136,16 +136,28 @@ function createListElement() {
 
 
 
+function saveListItemsToLs() {
+}
+
+// items = [];
+
 function addItemToList() {
-  document.querySelectorAll('.list-item-div button').forEach((el, idx) => {
-    el.addEventListener('click', () => {
+  document.querySelectorAll('.list-item-div button').forEach((addButton, idx) => {
+    addButton.addEventListener('click', () => {
       dishes.forEach((dish, index) => {
         if (idx === index) {
-          // let items = localStorage.getItem(`${dish}`) ? JSON.parse(localStorage.getItem(`${dish}`)) : [];
-          items = []
-          const list = document.querySelector('.list-item-div input');
-          items.push(`${list.value}`)
-          localStorage.setItem(`${dish}`, JSON.stringify(`${items}`))
+          let list = document.querySelectorAll('.list-item-div input').forEach((input, idx) => {
+            if (index === idx) {
+              // console.log(index, input, dish, addButton, idx)
+              // items = localStorage.getItem(`${dish}`) ? JSON.parse(localStorage.getItem(`${dish}`)) : [];
+              let items = [];
+              items.push(`${input.value}`)
+              localStorage.setItem(`${dish}`, JSON.stringify(`${items}`))
+              // items.push(`${list.value}`)
+              // items = localStorage.getItem(`${dish}`) ? JSON.parse(localStorage.getItem(`${dish}`)) : [];
+              // location.reload();
+            }
+          });
         }
       });
     })
