@@ -2,6 +2,8 @@
   margin: 1rem;
   padding: 1rem;
   background-color: #887f92;
+  max-width: 300px;
+  text-align: center;
 }
 
 .d-inline {
@@ -20,5 +22,18 @@
 
 .d-block {
   display: block;
+}
+
+.single-dish-list {
+  background-color: #2f2e2e;
+  margin: 1rem;
+  padding: 1rem;
+  max-width: 300px;
+}
+
+.list-container {
+  height: 100px;
+  background: #b6a670;
+  margin: 2rem 1rem;
 }
 /*# sourceMappingURL=style.css.map */
