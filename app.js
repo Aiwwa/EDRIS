@@ -1,6 +1,6 @@
 const DISHES_STORAGE_KEY = 'dishes';
 let dishes = localStorage.getItem(DISHES_STORAGE_KEY) ? JSON.parse(localStorage.getItem(DISHES_STORAGE_KEY)) : [];
-// let dishesListItem = localStorage.getItem(DISHES_LIST_ITME_KEY) ? JSON.parse(localStorage.getItem(DISHES_LIST_ITME_KEY)) : [];
+
 
 const addBtn = document.querySelector('#add-dish');
 const dishNameInput = document.querySelector('#name-input');
@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
   removeDish();
 
   addItemToList();
+
 })
 
 dishNameInput.addEventListener('keyup', (e) => {
@@ -125,7 +126,6 @@ function createListElement() {
   listDiv.appendChild(input);
   listDiv.appendChild(add);
 
-
   listContainer.appendChild(title);
   listContainer.appendChild(div);
   listContainer.appendChild(listDiv);
@@ -133,13 +133,8 @@ function createListElement() {
   dishesList.appendChild(listContainer);
 
 }
+items = [];
 
-
-
-function saveListItemsToLs() {
-}
-
-// items = [];
 
 function addItemToList() {
   document.querySelectorAll('.list-item-div button').forEach((addButton, idx) => {
@@ -148,14 +143,10 @@ function addItemToList() {
         if (idx === index) {
           let list = document.querySelectorAll('.list-item-div input').forEach((input, idx) => {
             if (index === idx) {
-              // console.log(index, input, dish, addButton, idx)
-              // items = localStorage.getItem(`${dish}`) ? JSON.parse(localStorage.getItem(`${dish}`)) : [];
-              let items = [];
+              // items = [];
               items.push(`${input.value}`)
-              localStorage.setItem(`${dish}`, JSON.stringify(`${items}`))
-              // items.push(`${list.value}`)
-              // items = localStorage.getItem(`${dish}`) ? JSON.parse(localStorage.getItem(`${dish}`)) : [];
-              // location.reload();
+              localStorage.setItem(`${dish}`, JSON.stringify(items))
+              getDishListFromLs()
             }
           });
         }
@@ -163,6 +154,12 @@ function addItemToList() {
     })
   })
 }
+
+
+function getDishListFromLs() {
+  console.log(items)
+}
+
 
 
 
