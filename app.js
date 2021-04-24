@@ -4,7 +4,9 @@ let dishes = localStorage.getItem(DISHES_STORAGE_KEY) ? JSON.parse(localStorage.
 const addBtn = document.querySelector('#add-dish');
 const dishNameInput = document.querySelector('#name-input');
 const dishesContainer = document.querySelector('.dishes-container');
-let dishName;
+const dishesList = document.querySelector('.single-dish-list');
+let dishCardTitle;
+
 
 const editContainer = document.querySelector('.edit-output');
 const editInput = document.querySelector('.edit-output input');
@@ -31,9 +33,8 @@ addBtn.addEventListener('click', () => {
 });
 
 function createDishCardTitle() {
-  dishName = dishNameInput.value;
+  dishes.push(`${dishNameInput.value}`);
   dishNameInput.value = '';
-  dishes.push(`${dishName}`);
 }
 
 function createDishCardToUI() {
@@ -51,16 +52,39 @@ function createDishCardToUI() {
     div.appendChild(p);
     div.appendChild(i);
     div.appendChild(remove);
+    dishCardTitle = p.textContent = element;
     p.textContent = element;
 
-    dishesContainer.appendChild(div)
+    dishesContainer.appendChild(div);
+
+    createListElement();
   });
+}
+
+function createListElement() {
+  const listContainer = document.createElement('div');
+  listContainer.classList.add('list-container');
+  let titleName;
+  // Geting name 
+  //
+  const title = document.createElement('h4');
+  title.textContent = `${dishCardTitle}`;
+  const div = document.createElement('div');
+  div.classList.add('add-item');
+  const listDiv = document.createElement('div');
+  listDiv.classList.add('list-item-div');
+
+  listContainer.appendChild(title);
+  listContainer.appendChild(div);
+  listContainer.appendChild(listDiv);
+
+  dishesList.appendChild(listContainer);
 }
 
 function editDishTitle() {
   document.querySelectorAll('.style .edit').forEach((el, idx) => {
     el.addEventListener('click', (event) => {
-      dishes.forEach((dish, index) => {
+      dishes.forEach((_dish, index) => {
         if (idx === index) {
           editContainer.classList.add('d-block')
           if (event) {
@@ -86,7 +110,7 @@ function editDishTitle() {
 function removeDish() {
   document.querySelectorAll('.style .remove').forEach((el, idx) => {
     el.addEventListener('click', () => {
-      dishes.forEach((dish, index) => {
+      dishes.forEach((_dish, index) => {
         if (idx === index) {
           el.parentElement.remove();
           dishes.splice(`${idx}`, 1);
@@ -97,6 +121,16 @@ function removeDish() {
     });
   });
 }
+
+
+
+
+
+
+
+
+
+
 
 
 // function createEditElement() {
