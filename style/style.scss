@@ -2,6 +2,8 @@
   margin: 1rem;
   padding: 1rem;
   background-color: rgb(136, 127, 146);
+  max-width: 300px;
+  text-align: center;
 }
 
 .d-inline {
@@ -20,4 +22,17 @@
 
 .d-block {
   display: block;
+}
+
+.single-dish-list {
+  background-color: rgb(47, 46, 46);
+  margin: 1rem;
+  padding: 1rem;
+  max-width: 300px;
+}
+
+.list-container {
+  height: 100px;
+  background: rgb(182, 166, 112);
+  margin: 2rem 1rem;
 }
