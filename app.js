@@ -140,13 +140,3 @@ function removeDish() {
 
 //   field.appendChild(div)
 // }
-
-
-
-
-
-
-
-
-
-
