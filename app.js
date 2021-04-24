@@ -1,5 +1,6 @@
 const DISHES_STORAGE_KEY = 'dishes';
 let dishes = localStorage.getItem(DISHES_STORAGE_KEY) ? JSON.parse(localStorage.getItem(DISHES_STORAGE_KEY)) : [];
+// let dishesListItem = localStorage.getItem(DISHES_LIST_ITME_KEY) ? JSON.parse(localStorage.getItem(DISHES_LIST_ITME_KEY)) : [];
 
 const addBtn = document.querySelector('#add-dish');
 const dishNameInput = document.querySelector('#name-input');
@@ -17,6 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
   createDishCardToUI();
   editDishTitle();
   removeDish();
+
+  addItemToList();
 })
 
 dishNameInput.addEventListener('keyup', (e) => {
@@ -112,15 +115,48 @@ function createListElement() {
   title.textContent = `${dishCardTitle}`;
   const div = document.createElement('div');
   div.classList.add('add-item');
+
   const listDiv = document.createElement('div');
   listDiv.classList.add('list-item-div');
+  const input = document.createElement('input');
+  const add = document.createElement('button');
+  add.textContent = 'Add item';
+
+  listDiv.appendChild(input);
+  listDiv.appendChild(add);
+
 
   listContainer.appendChild(title);
   listContainer.appendChild(div);
   listContainer.appendChild(listDiv);
 
   dishesList.appendChild(listContainer);
+
 }
+
+
+
+function addItemToList() {
+  document.querySelectorAll('.list-item-div button').forEach((el, idx) => {
+    el.addEventListener('click', () => {
+      dishes.forEach((dish, index) => {
+        if (idx === index) {
+          // let items = localStorage.getItem(`${dish}`) ? JSON.parse(localStorage.getItem(`${dish}`)) : [];
+          items = []
+          const list = document.querySelector('.list-item-div input');
+          items.push(`${list.value}`)
+          localStorage.setItem(`${dish}`, JSON.stringify(`${items}`))
+        }
+      });
+    })
+  })
+}
+
+
+
+
+
+
 
 // Other dynamic element for future
 // function createEditElement() {
