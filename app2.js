@@ -7,7 +7,7 @@ const dishNameInput = document.querySelector('#name-input');
 const dishesContainer = document.querySelector('.dishes-container');
 const dishesList = document.querySelector('.single-dish-list');
 
-let LIST_ITEMS_KEY = 'DINAMINIS';
+let LIST_ITEMS_KEY = 'DINAMIS';
 let dishProductsList = localStorage.getItem(LIST_ITEMS_KEY) ? JSON.parse(localStorage.getItem(LIST_ITEMS_KEY)) : [];
 // let listItems;
 
@@ -21,11 +21,9 @@ document.addEventListener('DOMContentLoaded', () => {
   editDishTitle();
   removeDish();
 
-  if (dishes.length) {
-    console.log('bro')
-  }
   addListToDish();
   createListItem();
+
 })
 
 dishNameInput.addEventListener('keyup', (e) => {
@@ -140,31 +138,27 @@ function createListElement() {
 
 
 
-// ----------------------------------------------------------------------------------------------------
-// ----------------------------------------------------------------------------
-// -----------------------------------------------------     
+// 
 function addListToDish() {
   console.log('hey')
   document.querySelectorAll('.list-item-div button').forEach((addButton, idx) => {
     // console.log(addButton)
     addButton.addEventListener('click', () => {
       // tikrinu su if id
-      createListItemValue();
+      createListItems();
       createListItem();
-      localStorage.setItem(LIST_ITEMS_KEY, JSON.stringify(dishProductsList))
+      localStorage.setItem(LIST_ITEMS_KEY, JSON.stringify(dishProductsList));
     });
   })
 }
 
-function createListItemValue() {
+function createListItems() {
   document.querySelectorAll('.list-item-div input').forEach((input, index) => {
     dishProductsList.push(input.value);
     input.value = '';
-    localStorage.setItem(LIST_ITEMS_KEY, JSON.stringify(dishProductsList))
   });
 }
 
-//DOM loaded
 function createListItem() {
   const listItems = document.getElementById('item') || document.createElement('ul');
   listItems.innerHTML = null;
