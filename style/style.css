@@ -36,5 +36,8 @@
   height: 100px;
   background: #b6a670;
   margin: 2rem 1rem;
+  overflow: hidden;
+  height: 400px;
+  max-height: 700px;
 }
 /*# sourceMappingURL=style.css.map */
