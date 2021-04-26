@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', () => {
   removeDish();
 
   addItemToList();
-
 })
 
 dishNameInput.addEventListener('keyup', (e) => {
@@ -63,7 +62,6 @@ function createDishCardToUI() {
     p.textContent = element;
 
     dishesContainer.appendChild(div);
-
     createListElement();
   });
 }
@@ -131,9 +129,7 @@ function createListElement() {
   listContainer.appendChild(listDiv);
 
   dishesList.appendChild(listContainer);
-
 }
-items = [];
 
 
 function addItemToList() {
@@ -141,12 +137,14 @@ function addItemToList() {
     addButton.addEventListener('click', () => {
       dishes.forEach((dish, index) => {
         if (idx === index) {
+          // console.log([dish]);
           let list = document.querySelectorAll('.list-item-div input').forEach((input, idx) => {
             if (index === idx) {
-              // items = [];
-              items.push(`${input.value}`)
-              localStorage.setItem(`${dish}`, JSON.stringify(items))
-              getDishListFromLs()
+              console.log(addButton, input);
+              console.log(`${dish}`)
+              // let items = [];
+              // items.push(`${input.value}`)
+              // localStorage.setItem(`${dish}`, JSON.stringify(items))
             }
           });
         }
@@ -156,16 +154,9 @@ function addItemToList() {
 }
 
 
-function getDishListFromLs() {
-  console.log(items)
-}
-
-
-
-
-
-
-
+// function getDishListFromLs() {
+//   let items = localStorage.getItem(`${dish}`) ? JSON.parse(localStorage.getItem(`${dish}`)) : [];
+// }
 
 // Other dynamic element for future
 // function createEditElement() {
