@@ -63,6 +63,7 @@ function createDishCardToUI() {
 
     dishesContainer.appendChild(div);
     createListElement();
+
   });
 }
 
@@ -119,7 +120,7 @@ function createListElement() {
   listDiv.classList.add('list-item-div');
   const input = document.createElement('input');
   const add = document.createElement('button');
-  add.textContent = 'Add item';
+  add.textContent = 'Add item to list';
 
   listDiv.appendChild(input);
   listDiv.appendChild(add);
@@ -129,6 +130,7 @@ function createListElement() {
   listContainer.appendChild(listDiv);
 
   dishesList.appendChild(listContainer);
+
 }
 
 
@@ -137,21 +139,38 @@ function addItemToList() {
     addButton.addEventListener('click', () => {
       dishes.forEach((dish, index) => {
         if (idx === index) {
-          // console.log([dish]);
+
           let list = document.querySelectorAll('.list-item-div input').forEach((input, idx) => {
-            if (index === idx) {
-              console.log(addButton, input);
-              console.log(`${dish}`)
-              // let items = [];
-              // items.push(`${input.value}`)
-              // localStorage.setItem(`${dish}`, JSON.stringify(items))
+            if (idx === index) {
+              console.log(idx);
+
+              //Pushing to list
+              document.querySelectorAll('.list-item-div').forEach((div, idx) => {
+                if (idx === index) {
+                  console.log(input.value)
+                  // div.appendChild(input.value)
+                  localStorage.setItem(`${dish}`, `${input.value}`)
+                }
+              });
+
             }
           });
+
+          // document.querySelectorAll('.list-item-div').forEach((div, idx) => {
+          //   if (idx === index) {
+          //     console.log(input.value)
+          //     // div.appendChild(input.value)
+          //   }
+          // });
+
         }
       });
     })
   })
 }
+
+
+
 
 
 // function getDishListFromLs() {
