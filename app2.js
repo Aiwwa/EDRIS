@@ -130,26 +130,34 @@ function createListElement() {
   listContainer.appendChild(listDiv);
 
   dishesList.appendChild(listContainer);
-
 }
 
+let dishProductsList;
+// dishProductsList = localStorage.getItem(`${dish}`) ? JSON.parse(localStorage.getItem(`${dish}`)) : [];
 
 function addItemToList() {
   document.querySelectorAll('.list-item-div button').forEach((addButton, idx) => {
     addButton.addEventListener('click', () => {
       dishes.forEach((dish, index) => {
-        if (idx === index) {
 
+
+        if (idx === index) {
           let list = document.querySelectorAll('.list-item-div input').forEach((input, idx) => {
             if (idx === index) {
-              console.log(idx);
+              dishProductsList = localStorage.getItem(`${dish}`) ? JSON.parse(localStorage.getItem(`${dish}`)) : [];
+
+              // JSON.parse(localStorage.getItem(`${dish}`))
+
+              dishProductsList.push(input.value);
+              localStorage.setItem(`${dish}`, JSON.stringify(dishProductsList));
+
+              console.log(`${dish}`, dishProductsList, localStorage.getItem(dishProductsList));
+              input.value = '';
 
               //Pushing to list
               document.querySelectorAll('.list-item-div').forEach((div, idx) => {
                 if (idx === index) {
-                  console.log(input.value)
-                  // div.appendChild(input.value)
-                  localStorage.setItem(`${dish}`, `${input.value}`)
+
                 }
               });
 
