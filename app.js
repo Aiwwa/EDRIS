@@ -137,14 +137,19 @@ function addItemToList() {
     addButton.addEventListener('click', () => {
       dishes.forEach((dish, index) => {
         if (idx === index) {
-          // console.log([dish]);
           let list = document.querySelectorAll('.list-item-div input').forEach((input, idx) => {
-            if (index === idx) {
-              console.log(addButton, input);
-              console.log(`${dish}`)
-              // let items = [];
-              // items.push(`${input.value}`)
-              // localStorage.setItem(`${dish}`, JSON.stringify(items))
+            if (idx === index) {
+              dishProductsList = localStorage.getItem(`${dish}`) ? JSON.parse(localStorage.getItem(`${dish}`)) : [];
+              dishProductsList.push(input.value);
+              localStorage.setItem(`${dish}`, JSON.stringify(dishProductsList));
+              input.value = '';
+
+              // Put List items to UI
+              document.querySelectorAll('.list-item-div').forEach((div, idx) => {
+                if (idx === index) {
+                  // li.textContent = `${24334}`;
+                }
+              });
             }
           });
         }
