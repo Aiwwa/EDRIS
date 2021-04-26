@@ -6,8 +6,9 @@ const addBtn = document.querySelector('#add-dish');
 const dishNameInput = document.querySelector('#name-input');
 const dishesContainer = document.querySelector('.dishes-container');
 const dishesList = document.querySelector('.single-dish-list');
-let dishCardTitle;
 
+let dishCardTitle;
+let dishProductsList;
 
 const editContainer = document.querySelector('.edit-output');
 const editInput = document.querySelector('.edit-output input');
@@ -132,74 +133,28 @@ function createListElement() {
   dishesList.appendChild(listContainer);
 }
 
-let dishProductsList;
-// dishProductsList = localStorage.getItem(`${dish}`) ? JSON.parse(localStorage.getItem(`${dish}`)) : [];
 
 function addItemToList() {
   document.querySelectorAll('.list-item-div button').forEach((addButton, idx) => {
     addButton.addEventListener('click', () => {
       dishes.forEach((dish, index) => {
-
-
         if (idx === index) {
           let list = document.querySelectorAll('.list-item-div input').forEach((input, idx) => {
             if (idx === index) {
               dishProductsList = localStorage.getItem(`${dish}`) ? JSON.parse(localStorage.getItem(`${dish}`)) : [];
-
-              // JSON.parse(localStorage.getItem(`${dish}`))
-
               dishProductsList.push(input.value);
               localStorage.setItem(`${dish}`, JSON.stringify(dishProductsList));
-
-              console.log(`${dish}`, dishProductsList, localStorage.getItem(dishProductsList));
               input.value = '';
-
               //Pushing to list
               document.querySelectorAll('.list-item-div').forEach((div, idx) => {
                 if (idx === index) {
 
                 }
               });
-
             }
           });
-
-          // document.querySelectorAll('.list-item-div').forEach((div, idx) => {
-          //   if (idx === index) {
-          //     console.log(input.value)
-          //     // div.appendChild(input.value)
-          //   }
-          // });
-
         }
       });
     })
   })
 }
-
-
-
-
-
-// function getDishListFromLs() {
-//   let items = localStorage.getItem(`${dish}`) ? JSON.parse(localStorage.getItem(`${dish}`)) : [];
-// }
-
-// Other dynamic element for future
-// function createEditElement() {
-//   const field = document.querySelector('el.previousSibling')
-//   const div = document.createElement('div');
-
-//   const label = document.createElement('label');
-//   label.setAttribute('for', 'edit-dish-name');
-//   const input = document.createElement('input');
-//   input.setAttribute('type', 'text');
-//   const btn = document.createElement('button');
-//   btn.setAttribute('type', 'button');
-
-//   div.appendChild(label);
-//   div.appendChild(input);
-//   div.appendChild(btn);
-
-//   field.appendChild(div)
-// }
