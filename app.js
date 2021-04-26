@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
   removeDish();
 
   addItemToList();
+
 })
 
 dishNameInput.addEventListener('keyup', (e) => {
@@ -131,7 +132,6 @@ function createListElement() {
   dishesList.appendChild(listContainer);
 }
 
-
 function addItemToList() {
   document.querySelectorAll('.list-item-div button').forEach((addButton, idx) => {
     addButton.addEventListener('click', () => {
@@ -147,7 +147,10 @@ function addItemToList() {
               // Put List items to UI
               document.querySelectorAll('.list-item-div').forEach((div, idx) => {
                 if (idx === index) {
-                  // li.textContent = `${24334}`;
+                  function saveToUI() {
+                    console.log(JSON.parse(localStorage.getItem(`${dish}`)))
+                  }
+                  saveToUI();
                 }
               });
             }
@@ -157,6 +160,12 @@ function addItemToList() {
     })
   })
 }
+
+
+
+
+
+
 
 
 // function getDishListFromLs() {
