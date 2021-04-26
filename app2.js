@@ -8,7 +8,9 @@ const dishesContainer = document.querySelector('.dishes-container');
 const dishesList = document.querySelector('.single-dish-list');
 
 let dishCardTitle;
-let dishProductsList;
+let dishProductsList = [];
+// let dishProductsList;
+
 
 const editContainer = document.querySelector('.edit-output');
 const editInput = document.querySelector('.edit-output input');
@@ -20,7 +22,10 @@ document.addEventListener('DOMContentLoaded', () => {
   editDishTitle();
   removeDish();
 
-  addItemToList();
+  // addItemToList();
+  addListToDish()
+  // Items
+
 })
 
 dishNameInput.addEventListener('keyup', (e) => {
@@ -134,27 +139,56 @@ function createListElement() {
 }
 
 
-function addItemToList() {
+function addListToDish() {
+  console.log('hey')
   document.querySelectorAll('.list-item-div button').forEach((addButton, idx) => {
+    // console.log(addButton)
     addButton.addEventListener('click', () => {
-      dishes.forEach((dish, index) => {
-        if (idx === index) {
-          let list = document.querySelectorAll('.list-item-div input').forEach((input, idx) => {
-            if (idx === index) {
-              dishProductsList = localStorage.getItem(`${dish}`) ? JSON.parse(localStorage.getItem(`${dish}`)) : [];
-              dishProductsList.push(input.value);
-              localStorage.setItem(`${dish}`, JSON.stringify(dishProductsList));
-              input.value = '';
-              //Pushing to list
-              document.querySelectorAll('.list-item-div').forEach((div, idx) => {
-                if (idx === index) {
+      createListItems();
+    });
+  })
+}
 
-                }
-              });
-            }
-          });
-        }
-      });
+// addBtn.addEventListener('click', () => {
+//   createDishCardTitle();
+//   localStorage.setItem('dishes', JSON.stringify(dishes));
+//   location.reload();
+// });
+
+function createListItems() {
+
+  document.querySelectorAll('.list-item-div input').forEach((input, index) => {
+    // console.log(dishProductsList);
+
+    dishProductsList.push(input.value);
+    input.value = '';
+
+  });
+
+  listUI();
+}
+
+function listUI() {
+  document.querySelectorAll('.list-item-div').forEach((div, index) => {
+    dishProductsList.forEach((listItem, index) => {
+      const li = document.createElement('li');
+      li.textContent = listItem;
+      console.log(li)
     })
   })
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
