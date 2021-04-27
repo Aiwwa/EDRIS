@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   addItemToList();
   getDishListFromLs();
-
 })
 
 dishNameInput.addEventListener('keyup', (e) => {
@@ -143,15 +142,7 @@ function addItemToList() {
               dishProductsList = localStorage.getItem(`${dish}`) ? JSON.parse(localStorage.getItem(`${dish}`)) : [];
               dishProductsList.push(input.value);
               localStorage.setItem(`${dish}`, JSON.stringify(dishProductsList));
-              // input.value = '';
               location.reload();
-
-              // Put List items to UI
-              // document.querySelectorAll('.list-item-div').forEach((div, idx) => {
-              //   if (idx === index) {
-              //     // saveToUI();
-              //   }
-              // });
             }
           });
         }
@@ -161,17 +152,39 @@ function addItemToList() {
 }
 
 
+let arr = [];
+
 function getDishListFromLs() {
   document.querySelectorAll('.list-container h4').forEach((title, index) => {
-    // console.log(title, index)
-    // console.log(localStorage.getItem('pica'));
-    console.log(title.innerText)
-    console.log(JSON.parse(localStorage.getItem(`${title.innerText}`)));
 
+    document.querySelectorAll('.list-container .list-item-div').forEach((listDiv, idx) => {
 
-    // console.log(localStorage.length);
-  })
+      if (index === idx) {
+
+        arr = JSON.parse(localStorage.getItem(`${title.innerText}`));
+
+        if (arr) {
+          arr.forEach((el, _idx) => {
+            const li = document.createElement('li');
+            li.textContent = `${el}`;
+            listDiv.appendChild(li);
+          });
+        } else {
+          const firstText = document.createElement('p');
+          firstText.innerText = 'List is empty'
+          listDiv.appendChild(firstText)
+          // console.log('add Items')
+        }
+
+      }
+
+    });
+
+  });
 }
+
+
+
 
 // Other dynamic element for future
 // function createEditElement() {
