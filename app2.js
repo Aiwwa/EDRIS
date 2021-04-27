@@ -1,15 +1,16 @@
 const DISHES_STORAGE_KEY = 'dishes';
 let dishes = localStorage.getItem(DISHES_STORAGE_KEY) ? JSON.parse(localStorage.getItem(DISHES_STORAGE_KEY)) : [];
-let dishCardTitle;
+
 
 const addBtn = document.querySelector('#add-dish');
 const dishNameInput = document.querySelector('#name-input');
 const dishesContainer = document.querySelector('.dishes-container');
 const dishesList = document.querySelector('.single-dish-list');
 
-let LIST_ITEMS_KEY = 'DINAMIS';
-let dishProductsList = localStorage.getItem(LIST_ITEMS_KEY) ? JSON.parse(localStorage.getItem(LIST_ITEMS_KEY)) : [];
-// let listItems;
+let dishCardTitle;
+let dishProductsList = [];
+// let dishProductsList;
+
 
 const editContainer = document.querySelector('.edit-output');
 const editInput = document.querySelector('.edit-output input');
@@ -21,8 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
   editDishTitle();
   removeDish();
 
-  addListToDish();
-  createListItem();
+  // addItemToList();
+  addListToDish()
+  // Items
 
 })
 
@@ -35,7 +37,7 @@ dishNameInput.addEventListener('keyup', (e) => {
 
 addBtn.addEventListener('click', () => {
   createDishCardTitle();
-  localStorage.setItem(`${DISHES_STORAGE_KEY}`, JSON.stringify(dishes));
+  localStorage.setItem('dishes', JSON.stringify(dishes));
   location.reload();
 });
 
@@ -137,58 +139,31 @@ function createListElement() {
 }
 
 
-
-// 
 function addListToDish() {
   console.log('hey')
   document.querySelectorAll('.list-item-div button').forEach((addButton, idx) => {
     // console.log(addButton)
     addButton.addEventListener('click', () => {
-      // tikrinu su if id
-      createListItems();
-      createListItem();
-      localStorage.setItem(LIST_ITEMS_KEY, JSON.stringify(dishProductsList));
+      console.log(addButton)
     });
   })
 }
 
+// addBtn.addEventListener('click', () => {
+//   createDishCardTitle();
+//   localStorage.setItem('dishes', JSON.stringify(dishes));
+//   location.reload();
+// });
+
 function createListItems() {
+
   document.querySelectorAll('.list-item-div input').forEach((input, index) => {
+    // console.log(dishProductsList);
+
     dishProductsList.push(input.value);
     input.value = '';
+
   });
-}
-
-function createListItem() {
-  const listItems = document.getElementById('item') || document.createElement('ul');
-  listItems.innerHTML = null;
-  listItems.id = 'item';
-
-  dishProductsList.forEach(item => {
-    const p = document.createElement('li');
-    p.innerText = item;
-    listItems.appendChild(p);
-  })
-
-  // document.querySelector('.list-item-div').appendChild(listItems)
-  document.querySelectorAll('.list-item-div').forEach(el => {
-    el.appendChild(listItems)
-  })
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
