@@ -22,11 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
   editDishTitle();
   removeDish();
 
-  if (dishes.length) {
-    console.log('bro')
-    addListToDish();
-    // createListItem();
-  }
 
 })
 
@@ -158,10 +153,8 @@ function addListToDish() {
       document.querySelectorAll('.list-item-div').forEach((el, index) => {
         if (index === idx) {
           btnIdx = idx;
-          console.log(addButton, idx)
-          createListItemValue();
-          createListItem();
-          localStorage.setItem(LIST_ITEMS_KEY, JSON.stringify(dishProductsList))
+
+          // localStorage.setItem(LIST_ITEMS_KEY, JSON.stringify(dishProductsList))
         }
       })
     });
@@ -169,39 +162,9 @@ function addListToDish() {
 }
 
 
-function createListItemValue() {
-  document.querySelectorAll('.list-item-div input').forEach((input, index) => {
-    if (index === btnIdx) {
-      console.log(index, input, btnIdx)
-      dishProductsList.push(input.value);
-      input.value = '';
-      localStorage.setItem(LIST_ITEMS_KEY, JSON.stringify(dishProductsList))
-    }
-  });
-}
 
 
-//DOM loaded
-function createListItem() {
-  const listItems = document.getElementById('item') || document.createElement('ul');
-  listItems.innerHTML = null;
-  listItems.id = 'item';
 
-  dishProductsList.forEach(item => {
-    const p = document.createElement('li');
-    p.innerText = item;
-    listItems.appendChild(p);
-  })
-
-  document.querySelectorAll('.list-item-div').forEach((el, index) => {
-    if (index === btnIdx) {
-      console.log(el)
-      el.appendChild(listItems);
-      localStorage.setItem(LIST_ITEMS_KEY, JSON.stringify(dishProductsList))
-
-    }
-  })
-}
 
 
 
