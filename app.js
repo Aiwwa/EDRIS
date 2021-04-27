@@ -72,7 +72,7 @@ function editDishTitle() {
     el.addEventListener('click', (event) => {
       dishes.forEach((_dish, index) => {
         if (idx === index) {
-          editContainer.classList.add('d-block')
+          editContainer.classList.toggle('edit-mode');
           if (event) {
             editInput.addEventListener('keyup', (e) => {
               e.preventDefault();
@@ -138,6 +138,7 @@ function addItemToList() {
       dishes.forEach((dish, index) => {
         if (idx === index) {
           let list = document.querySelectorAll('.list-item-div input').forEach((input, idx) => {
+            //Paspaudus add item nusiunciu i local storage
             if (idx === index) {
               dishProductsList = localStorage.getItem(`${dish}`) ? JSON.parse(localStorage.getItem(`${dish}`)) : [];
               dishProductsList.push(input.value);
@@ -159,21 +160,39 @@ function getDishListFromLs() {
 
     document.querySelectorAll('.list-container .list-item-div').forEach((listDiv, idx) => {
 
+
+      // Paiimu is ls ir piesiu sarasa
       if (index === idx) {
 
         arr = JSON.parse(localStorage.getItem(`${title.innerText}`));
 
         if (arr) {
           arr.forEach((el, _idx) => {
+            const listItemDiv = document.createElement('div');
+            listItemDiv.classList.add('list-items');
+
             const li = document.createElement('li');
             li.textContent = `${el}`;
-            listDiv.appendChild(li);
+
+            // Ckecboxo elementas
+            const chBox = document.createElement('input');
+            chBox.setAttribute('type', 'checkbox');
+            // chBox.checked = true;
+
+
+            const del = document.createElement('i');
+            del.classList.add('fas', 'fa-minus-circle');
+
+            listItemDiv.appendChild(chBox);
+            listItemDiv.appendChild(li);
+            listItemDiv.appendChild(del)
+
+            listDiv.appendChild(listItemDiv);
           });
         } else {
           const firstText = document.createElement('p');
           firstText.innerText = 'List is empty'
           listDiv.appendChild(firstText)
-          // console.log('add Items')
         }
 
       }
@@ -182,6 +201,16 @@ function getDishListFromLs() {
 
   });
 }
+
+
+function ch() {
+  const chBox = document.createElement('input');
+  chBox.setAttribute('type', 'checkbox');
+
+  document.body.appendChild(chBox)
+}
+
+ch()
 
 
 
@@ -204,3 +233,4 @@ function getDishListFromLs() {
 
 //   field.appendChild(div)
 // }
+
