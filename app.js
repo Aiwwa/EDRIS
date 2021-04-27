@@ -6,9 +6,11 @@ const addBtn = document.querySelector('#add-dish');
 const dishNameInput = document.querySelector('#name-input');
 const dishesContainer = document.querySelector('.dishes-container');
 const dishesList = document.querySelector('.single-dish-list');
+const mainList = document.querySelector('.main-list');
 let dishCardTitle;
+let arr = [];
 
-
+// let chBoxes = document.querySelectorAll("input[type='checkbox']");
 const editContainer = document.querySelector('.edit-output');
 const editInput = document.querySelector('.edit-output input');
 const editInputSave = document.querySelector('.edit-output button');
@@ -21,6 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   addItemToList();
   getDishListFromLs();
+  chechBoxForListItems();
+
+  generateFullList();
+
 })
 
 dishNameInput.addEventListener('keyup', (e) => {
@@ -122,12 +128,17 @@ function createListElement() {
   const add = document.createElement('button');
   add.textContent = 'Add item';
 
+  const addToList = document.createElement('button');
+  addToList.id = 'add-to-main-list';
+  addToList.textContent = 'Add items to general list';
+
   listDiv.appendChild(input);
   listDiv.appendChild(add);
 
   listContainer.appendChild(title);
   listContainer.appendChild(div);
   listContainer.appendChild(listDiv);
+  listContainer.appendChild(addToList);
 
   dishesList.appendChild(listContainer);
 }
@@ -135,10 +146,10 @@ function createListElement() {
 function addItemToList() {
   document.querySelectorAll('.list-item-div button').forEach((addButton, idx) => {
     addButton.addEventListener('click', () => {
+
       dishes.forEach((dish, index) => {
         if (idx === index) {
-          let list = document.querySelectorAll('.list-item-div input').forEach((input, idx) => {
-            //Paspaudus add item nusiunciu i local storage
+          let list = document.querySelectorAll('.list-item-div > input').forEach((input, idx) => {
             if (idx === index) {
               dishProductsList = localStorage.getItem(`${dish}`) ? JSON.parse(localStorage.getItem(`${dish}`)) : [];
               dishProductsList.push(input.value);
@@ -153,19 +164,12 @@ function addItemToList() {
 }
 
 
-let arr = [];
 
 function getDishListFromLs() {
   document.querySelectorAll('.list-container h4').forEach((title, index) => {
-
     document.querySelectorAll('.list-container .list-item-div').forEach((listDiv, idx) => {
-
-
-      // Paiimu is ls ir piesiu sarasa
       if (index === idx) {
-
         arr = JSON.parse(localStorage.getItem(`${title.innerText}`));
-
         if (arr) {
           arr.forEach((el, _idx) => {
             const listItemDiv = document.createElement('div');
@@ -174,43 +178,57 @@ function getDishListFromLs() {
             const li = document.createElement('li');
             li.textContent = `${el}`;
 
-            // Ckecboxo elementas
-            const chBox = document.createElement('input');
-            chBox.setAttribute('type', 'checkbox');
-            // chBox.checked = true;
-
-
             const del = document.createElement('i');
             del.classList.add('fas', 'fa-minus-circle');
 
-            listItemDiv.appendChild(chBox);
             listItemDiv.appendChild(li);
-            listItemDiv.appendChild(del)
+            listItemDiv.appendChild(del);
 
             listDiv.appendChild(listItemDiv);
           });
         } else {
           const firstText = document.createElement('p');
-          firstText.innerText = 'List is empty'
-          listDiv.appendChild(firstText)
+          firstText.innerText = 'List is empty';
+          listDiv.appendChild(firstText);
         }
-
       }
-
     });
-
   });
 }
 
 
-function ch() {
-  const chBox = document.createElement('input');
-  chBox.setAttribute('type', 'checkbox');
-
-  document.body.appendChild(chBox)
+function chechBoxForListItems() {
+  const li = document.querySelectorAll('li').forEach(listItem => {
+    const chBox = document.createElement('input');
+    chBox.setAttribute('type', 'checkbox');
+    chBox.setAttribute('value', '');
+    listItem.appendChild(chBox);
+  })
 }
 
-ch()
+let generalListArr = [];
+
+function generateFullList() {
+  document.querySelectorAll('#add-to-main-list').forEach((el, index) => {
+    el.addEventListener('click', () => {
+      console.log('Loaded')
+      document.querySelectorAll('.list-container h4').forEach((title, idx) => {
+        if (index === idx) {
+          generalListArr = JSON.parse(localStorage.getItem(`${title.innerText}`));
+          generalListArr.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = item;
+            mainList.appendChild(li)
+          })
+        }
+      })
+    })
+  })
+};
+
+
+
+
 
 
 
