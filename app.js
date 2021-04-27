@@ -10,7 +10,6 @@ const mainList = document.querySelector('.main-list');
 let dishCardTitle;
 let arr = [];
 
-// let chBoxes = document.querySelectorAll("input[type='checkbox']");
 const editContainer = document.querySelector('.edit-output');
 const editInput = document.querySelector('.edit-output input');
 const editInputSave = document.querySelector('.edit-output button');
@@ -26,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
   chechBoxForListItems();
 
   generateFullList();
-
+  chBoxItemEdit();
 })
 
 dishNameInput.addEventListener('keyup', (e) => {
@@ -146,7 +145,6 @@ function createListElement() {
 function addItemToList() {
   document.querySelectorAll('.list-item-div button').forEach((addButton, idx) => {
     addButton.addEventListener('click', () => {
-
       dishes.forEach((dish, index) => {
         if (idx === index) {
           let list = document.querySelectorAll('.list-item-div > input').forEach((input, idx) => {
@@ -203,6 +201,8 @@ function chechBoxForListItems() {
     chBox.setAttribute('type', 'checkbox');
     chBox.setAttribute('value', '');
     listItem.appendChild(chBox);
+    // chBoxItemEdit()
+
   })
 }
 
@@ -218,7 +218,7 @@ function generateFullList() {
           generalListArr.forEach(item => {
             const li = document.createElement('li');
             li.textContent = item;
-            mainList.appendChild(li)
+            mainList.appendChild(li);
           })
         }
       })
@@ -227,9 +227,13 @@ function generateFullList() {
 };
 
 
-
-
-
+function chBoxItemEdit() {
+  document.querySelectorAll("input[type='checkbox']").forEach(el => {
+    el.addEventListener('click', (e) => {
+      el.parentElement.classList.toggle('checked')
+    })
+  });
+}
 
 
 
