@@ -15,14 +15,15 @@
     <title>EDRIS</title>
   </head>
   <body>
-    <div>
-      <label for="name">Enter Dish name</label>
-      <input type="text" id="name-input" />
-      <button type="button" name="add-dish" id="add-dish">Add dish</button>
+    <div class="wrap-container">
+      <div>
+        <label for="name">Enter Dish name</label>
+        <input type="text" id="name-input" />
+        <button type="button" name="add-dish" id="add-dish">Add dish</button>
+      </div>
+      <div class="dishes-container"></div>
     </div>
-    <div class="dishes-container"></div>
-
-    <div class="edit-output d-none">
+    <div class="edit-output">
       <label for="edit-dish-name">Enter new name</label>
       <input type="text" />
       <button type="button">Save</button>
