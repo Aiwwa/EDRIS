@@ -165,8 +165,10 @@ function getDishListFromLs() {
   document.querySelectorAll('.list-container h4').forEach((title, index) => {
     // console.log(title, index)
     // console.log(localStorage.getItem('pica'));
-    console.log(title.innerHTML)
-    console.log(localStorage.getItem(`${title.innerHTML}`));
+    console.log(title.innerText)
+    console.log(JSON.parse(localStorage.getItem(`${title.innerText}`)));
+
+
     // console.log(localStorage.length);
   })
 }
