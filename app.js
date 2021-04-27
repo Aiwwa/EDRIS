@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
   removeDish();
 
   addItemToList();
+  getDishListFromLs();
 
 })
 
@@ -142,17 +143,15 @@ function addItemToList() {
               dishProductsList = localStorage.getItem(`${dish}`) ? JSON.parse(localStorage.getItem(`${dish}`)) : [];
               dishProductsList.push(input.value);
               localStorage.setItem(`${dish}`, JSON.stringify(dishProductsList));
-              input.value = '';
+              // input.value = '';
+              location.reload();
 
               // Put List items to UI
-              document.querySelectorAll('.list-item-div').forEach((div, idx) => {
-                if (idx === index) {
-                  function saveToUI() {
-                    console.log(JSON.parse(localStorage.getItem(`${dish}`)))
-                  }
-                  saveToUI();
-                }
-              });
+              // document.querySelectorAll('.list-item-div').forEach((div, idx) => {
+              //   if (idx === index) {
+              //     // saveToUI();
+              //   }
+              // });
             }
           });
         }
@@ -162,15 +161,15 @@ function addItemToList() {
 }
 
 
-
-
-
-
-
-
-// function getDishListFromLs() {
-//   let items = localStorage.getItem(`${dish}`) ? JSON.parse(localStorage.getItem(`${dish}`)) : [];
-// }
+function getDishListFromLs() {
+  document.querySelectorAll('.list-container h4').forEach((title, index) => {
+    // console.log(title, index)
+    // console.log(localStorage.getItem('pica'));
+    console.log(title.innerHTML)
+    console.log(localStorage.getItem(`${title.innerHTML}`));
+    // console.log(localStorage.length);
+  })
+}
 
 // Other dynamic element for future
 // function createEditElement() {
