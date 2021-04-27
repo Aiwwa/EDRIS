@@ -1,8 +1,65 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-size: 30px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 3fr 1fr 4fr;
+      grid-template-columns: 3fr 1fr 4fr;
+}
+
+input {
+  padding: 0.4rem 1rem;
+  margin: 1rem;
+  font-size: 30px;
+  border: none;
+  border-bottom: 5px solid #1b1b1b;
+  outline: none;
+  background-color: rgba(61, 61, 61, 0);
+}
+
+button {
+  font-size: 25px;
+  padding: 0.4rem 1rem;
+  margin: 1rem;
+  background-color: #222222;
+  color: #fff;
+  outline: none;
+  border-radius: 5px;
+}
+
+li {
+  display: inline-block;
+  margin-left: 1rem;
+}
+
+.edit-mode {
+  background-color: #a0b97a;
+}
+
+.wrap-container {
+  padding: 2rem;
+}
+
 .style {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   margin: 1rem;
   padding: 1rem;
-  background-color: #bbbbbb;
-  max-width: 300px;
+  background: #b6a670;
+  max-width: 400px;
   text-align: center;
 }
 
@@ -13,8 +70,10 @@
 .fas {
   margin: 0.6rem;
   padding: 0.4rem;
-  background: #5c5c5c;
+  background-color: #222222;
+  border-radius: 40%;
   color: #fff;
+  padding: 15px;
 }
 
 .d-none {
@@ -28,15 +87,56 @@
 .single-dish-list {
   margin: 1rem;
   padding: 1rem;
-  max-width: 300px;
 }
 
 .list-container {
+  padding: 2rem;
   height: 100px;
   background: #b6a670;
   margin: 2rem 1rem;
   overflow: hidden;
-  height: 400px;
-  max-height: 700px;
+  height: auto;
+}
+
+.edit {
+  background-color: #222222;
+  padding: 15px;
+}
+
+.edit-output {
+  margin-top: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 200px;
+}
+
+.item-div {
+  margin: 1rem;
+}
+
+input[type='checkbox'] {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}
+
+.list-items {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 /*# sourceMappingURL=style.css.map */
