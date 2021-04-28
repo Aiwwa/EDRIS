@@ -10,6 +10,8 @@ const mainList = document.querySelector('.main-list');
 let dishCardTitle;
 let arr = [];
 let generalListArr = [];
+const filterInput = document.querySelector('#main-list-items');
+
 
 const editContainer = document.querySelector('.edit-output');
 const editInput = document.querySelector('.edit-output input');
@@ -236,4 +238,18 @@ function chBoxItemEdit() {
   });
 }
 
+function filterMainListTask() {
+  filterInput.addEventListener('keyup', (e) => {
+    const text = e.target.value;
+    document.querySelectorAll('.main-list li').forEach(task => {
+      const taskText = task.textContent;
+      if (taskText.indexOf(text) != -1) {
+        task.style.color = 'green';
+      } else {
+        task.style.color = 'red';
+      }
+    });
+  });
+}
 
+filterMainListTask();
