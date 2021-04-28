@@ -98,9 +98,14 @@ h5 {
   font-size: 30px;
   display: flex;
   flex-direction: column;
+
+  h5 {
+    font-size: 30px;
+    text-align: center;
+  }
 }
 
-.main-list li {
+li {
   margin: 1rem;
 }
 
@@ -135,4 +140,13 @@ input[type='checkbox'] {
 
 .checked {
   text-decoration: line-through;
+}
+
+.filter {
+  text-align: center;
+  margin: 1rem 0;
+
+  input {
+    margin: 0 2rem;
+  }
 }
