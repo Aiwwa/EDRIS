@@ -1,14 +1,15 @@
 const DISHES_STORAGE_KEY = 'dishes';
 let dishes = localStorage.getItem(DISHES_STORAGE_KEY) ? JSON.parse(localStorage.getItem(DISHES_STORAGE_KEY)) : [];
 
-
 const addBtn = document.querySelector('#add-dish');
 const dishNameInput = document.querySelector('#name-input');
 const dishesContainer = document.querySelector('.dishes-container');
 const dishesList = document.querySelector('.single-dish-list');
 const mainList = document.querySelector('.main-list');
+
 let dishCardTitle;
 let arr = [];
+let generalListArr = [];
 
 const editContainer = document.querySelector('.edit-output');
 const editInput = document.querySelector('.edit-output input');
@@ -26,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   generateFullList();
   chBoxItemEdit();
-})
+});
 
 dishNameInput.addEventListener('keyup', (e) => {
   e.preventDefault();
@@ -147,7 +148,7 @@ function addItemToList() {
     addButton.addEventListener('click', () => {
       dishes.forEach((dish, index) => {
         if (idx === index) {
-          let list = document.querySelectorAll('.list-item-div > input').forEach((input, idx) => {
+          document.querySelectorAll('.list-item-div > input').forEach((input, idx) => {
             if (idx === index) {
               dishProductsList = localStorage.getItem(`${dish}`) ? JSON.parse(localStorage.getItem(`${dish}`)) : [];
               dishProductsList.push(input.value);
@@ -157,11 +158,9 @@ function addItemToList() {
           });
         }
       });
-    })
-  })
+    });
+  });
 }
-
-
 
 function getDishListFromLs() {
   document.querySelectorAll('.list-container h4').forEach((title, index) => {
@@ -196,15 +195,13 @@ function getDishListFromLs() {
 
 
 function chechBoxForListItems() {
-  const li = document.querySelectorAll('li').forEach(listItem => {
+  document.querySelectorAll('li').forEach(listItem => {
     const chBox = document.createElement('input');
     chBox.setAttribute('type', 'checkbox');
     chBox.setAttribute('value', '');
     listItem.appendChild(chBox);
-  })
+  });
 }
-
-let generalListArr = [];
 
 function generateFullList() {
   document.querySelectorAll('#add-to-main-list').forEach((el, index) => {
@@ -218,46 +215,24 @@ function generateFullList() {
             mainList.appendChild(li);
           })
         }
-      })
-    })
-  })
-};
-
+      });
+    });
+  });
+}
 
 function chBoxItemEdit() {
   document.querySelectorAll("input[type='checkbox']").forEach(el => {
     el.addEventListener('click', (e) => {
-      el.parentElement.classList.toggle('checked')
-      if (e.target.checked) {
-        const li = document.querySelectorAll('.main-list li').forEach(liEl => {
-          if (el.parentElement.textContent === liEl.innerText) {
-            console.log(liEl.innerText)
-            liEl.remove()
-          }
-        });
-      }
-    })
+      el.parentElement.classList.toggle('checked');
+      const li = document.querySelectorAll('.main-list li').forEach(liEl => {
+        if (e.target.checked && el.parentElement.textContent === liEl.innerText) {
+          liEl.classList.add('d-none');
+        } else {
+          liEl.classList.remove('d-none');
+        }
+      });
+    });
   });
 }
 
-
-
-// Other dynamic element for future
-// function createEditElement() {
-//   const field = document.querySelector('el.previousSibling')
-//   const div = document.createElement('div');
-
-//   const label = document.createElement('label');
-//   label.setAttribute('for', 'edit-dish-name');
-//   const input = document.createElement('input');
-//   input.setAttribute('type', 'text');
-//   const btn = document.createElement('button');
-//   btn.setAttribute('type', 'button');
-
-//   div.appendChild(label);
-//   div.appendChild(input);
-//   div.appendChild(btn);
-
-//   field.appendChild(div)
-// }
 
