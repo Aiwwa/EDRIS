@@ -34,6 +34,7 @@ button {
 }
 
 li {
+  list-style: none;
   display: inline-block;
   margin-left: 1rem;
 }
@@ -115,7 +116,12 @@ h5 {
           flex-direction: column;
 }
 
-.main-list li {
+.main-list h5 {
+  font-size: 30px;
+  text-align: center;
+}
+
+li {
   margin: 1rem;
 }
 
@@ -163,5 +169,14 @@ input[type='checkbox'] {
 
 .checked {
   text-decoration: line-through;
+}
+
+.filter {
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.filter input {
+  margin: 0 2rem;
 }
 /*# sourceMappingURL=style.css.map */
