@@ -201,8 +201,6 @@ function chechBoxForListItems() {
     chBox.setAttribute('type', 'checkbox');
     chBox.setAttribute('value', '');
     listItem.appendChild(chBox);
-    // chBoxItemEdit()
-
   })
 }
 
@@ -211,7 +209,6 @@ let generalListArr = [];
 function generateFullList() {
   document.querySelectorAll('#add-to-main-list').forEach((el, index) => {
     el.addEventListener('click', () => {
-      console.log('Loaded')
       document.querySelectorAll('.list-container h4').forEach((title, idx) => {
         if (index === idx) {
           generalListArr = JSON.parse(localStorage.getItem(`${title.innerText}`));
@@ -231,6 +228,17 @@ function chBoxItemEdit() {
   document.querySelectorAll("input[type='checkbox']").forEach(el => {
     el.addEventListener('click', (e) => {
       el.parentElement.classList.toggle('checked')
+
+      if (e.target.checked) {
+        // console.log(el.parentElement.textContent)
+        const li = document.querySelectorAll('.main-list li').forEach(liEl => {
+          if (el.parentElement.textContent === liEl.innerText) {
+            console.log(liEl.innerText)
+            liEl.remove();
+          }
+        });
+      }
+
     })
   });
 }
