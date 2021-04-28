@@ -15,6 +15,7 @@ const editContainer = document.querySelector('.edit-output');
 const editInput = document.querySelector('.edit-output input');
 const editInputSave = document.querySelector('.edit-output button');
 
+
 //Events
 document.addEventListener('DOMContentLoaded', () => {
   createDishCardToUI();
