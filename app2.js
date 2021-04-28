@@ -18,7 +18,6 @@ addBtn.addEventListener('click', () => {
   dishNameInput.value = '';
   localStorage.setItem(DISHES_STORAGE_KEY, JSON.stringify(dishesArr));
   drawDishesToUI();
-
 })
 
 function drawDishesToUI() {
@@ -37,19 +36,17 @@ function drawDishesToUI() {
     name.appendChild(remove);
     nameDiv.appendChild(name);
     dishName.appendChild(nameDiv);
+
   });
 
   dishesContainer.appendChild(dishName);
 }
 
-
 function removeDish() {
-  console.log(JSON.parse(localStorage.getItem(DISHES_STORAGE_KEY)));
   document.querySelectorAll('.fa-trash-alt').forEach((iconEl, index) => {
     iconEl.addEventListener('click', () => {
       dishesArr.splice(`${index}`, 1);
       localStorage.setItem(DISHES_STORAGE_KEY, JSON.stringify(dishesArr));
-      console.log(iconEl, index, dishesArr);
       document.querySelectorAll('#dish-name div').forEach((el, idx) => {
         if (idx === index) {
           el.remove();
@@ -59,11 +56,15 @@ function removeDish() {
   })
 }
 
-// el.parentElement.remove();
-// dishes.splice(`${idx}`, 1);
-// localStorage.setItem('dishes', JSON.stringify(dishes));
-// location.reload();
 
+function createDishCard() {
+  const div = document.createElement('div');
+  const p = document.createElement('p');
+  p.innerText = 'sukuriau';
+
+  div.appendChild(p);
+  dishesList.appendChild(div);
+}
 
 
 
