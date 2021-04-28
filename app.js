@@ -30,6 +30,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   generateFullList();
   chBoxItemEdit();
+
+  filterMainListTask();
+  deleteItemsFormDisch()
+
 });
 
 dishNameInput.addEventListener('keyup', (e) => {
@@ -196,6 +200,16 @@ function getDishListFromLs() {
   });
 }
 
+function deleteItemsFormDisch() {
+  document.querySelectorAll('.list-item-div .list-items').forEach(item => {
+  })
+  document.querySelectorAll('.list-item-div .list-items i').forEach((deleteBtn, index) => {
+    deleteBtn.addEventListener('click', () => {
+      console.log(deleteBtn.parentElement, index)
+      deleteBtn.parentElement.remove()
+    })
+  })
+}
 
 function chechBoxForListItems() {
   document.querySelectorAll('li').forEach(listItem => {
@@ -244,12 +258,12 @@ function filterMainListTask() {
     document.querySelectorAll('.main-list li').forEach(task => {
       const taskText = task.textContent;
       if (taskText.indexOf(text) != -1) {
-        task.style.color = 'green';
+        task.style.color = 'black';
+
       } else {
-        task.style.color = 'red';
+        task.style.color = 'rgb(182, 166, 112)';
       }
     });
   });
 }
 
-filterMainListTask();
