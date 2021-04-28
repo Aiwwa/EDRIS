@@ -55,13 +55,13 @@ function createDishCardToUI() {
     const p = document.createElement('p');
     p.classList.add('d-inline');
 
-    const i = document.createElement('i');
-    i.classList.add('fas', 'fa-pen', 'edit');
+    // const i = document.createElement('i');
+    // i.classList.add('fas', 'fa-pen', 'edit');
     const remove = document.createElement('i');
     remove.classList.add('fas', 'fa-trash-alt', 'remove');
 
     div.appendChild(p);
-    div.appendChild(i);
+    // div.appendChild(i);
     div.appendChild(remove);
 
     dishCardTitle = p.textContent = element;
@@ -228,17 +228,14 @@ function chBoxItemEdit() {
   document.querySelectorAll("input[type='checkbox']").forEach(el => {
     el.addEventListener('click', (e) => {
       el.parentElement.classList.toggle('checked')
-
       if (e.target.checked) {
-        // console.log(el.parentElement.textContent)
         const li = document.querySelectorAll('.main-list li').forEach(liEl => {
           if (el.parentElement.textContent === liEl.innerText) {
             console.log(liEl.innerText)
-            liEl.remove();
+            liEl.remove()
           }
         });
       }
-
     })
   });
 }
