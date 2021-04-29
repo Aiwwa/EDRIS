@@ -105,13 +105,3 @@ function createListElement() {
 
   dishesList.appendChild(listContainer);
 }
-
-
-
-
-
-
-
-
-
-
