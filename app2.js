@@ -8,67 +8,60 @@ let dishesArr = localStorage.getItem(DISHES_STORAGE_KEY) ? JSON.parse(localStora
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  drawDishesToUI();
-  removeDish();
-});
+  drawListDishesToUI();
+  deletDishFromUI();
 
+});
 
 addBtn.addEventListener('click', () => {
   dishesArr.push(`${dishNameInput.value}`);
-  dishNameInput.value = '';
   localStorage.setItem(DISHES_STORAGE_KEY, JSON.stringify(dishesArr));
-  drawDishesToUI();
+  dishNameInput.value = '';
+  drawListDishesToUI();
+  deletDishFromUI();
 })
 
-function drawDishesToUI() {
-  const dishName = document.getElementById("dish-name") || document.createElement("div");
-  dishName.innerHTML = null;
-  dishName.id = "dish-name";
+function drawListDishesToUI() {
+  const item = document.getElementById('item') || document.createElement('div');
+  item.innerHTML = null;
+  item.id = 'item'
 
-  dishesArr.forEach(dishItem => {
-    const nameDiv = document.createElement('div');
-    const name = document.createElement('h4');
-    name.textContent = `${dishItem}`;
+  dishesArr.forEach(listItem => {
+    const div = document.createElement('div');
+    const li = document.createElement('li');
+    const del = document.createElement('i');
+    del.classList.add('fas', 'fa-minus-circle');
+    li.innerText = `${listItem}`;
 
-    const remove = document.createElement('i');
-    remove.classList.add('fas', 'fa-trash-alt', 'remove');
-
-    name.appendChild(remove);
-    nameDiv.appendChild(name);
-    dishName.appendChild(nameDiv);
-
+    div.appendChild(li);
+    div.appendChild(del);
+    item.appendChild(div)
   });
 
-  dishesContainer.appendChild(dishName);
+  dishesContainer.appendChild(item);
 }
 
-function removeDish() {
-  document.querySelectorAll('.fa-trash-alt').forEach((iconEl, index) => {
-    iconEl.addEventListener('click', () => {
-      dishesArr.splice(`${index}`, 1);
-      localStorage.setItem(DISHES_STORAGE_KEY, JSON.stringify(dishesArr));
-      document.querySelectorAll('#dish-name div').forEach((el, idx) => {
-        if (idx === index) {
-          el.remove();
-        }
-      })
+// Includes funtion for deleting form LS
+function deletDishFromUI() {
+  document.querySelectorAll('i').forEach(el => {
+    el.addEventListener('click', () => {
+      el.parentElement.remove();
+      deleteDishFromLs(el.parentElement);
     })
   })
 }
 
+function deleteDishFromLs(item) {
 
-function createDishCard() {
-  const div = document.createElement('div');
-  const p = document.createElement('p');
-  p.innerText = 'sukuriau';
+  dishesArr.forEach((dishItem, index) => {
+    if (item.innerText === dishItem) {
+      // dishesArr.splice(index, 1);
+      console.log(item.innerText)
+    }
+  });
 
-  div.appendChild(p);
-  dishesList.appendChild(div);
+  localStorage.setItem(DISHES_STORAGE_KEY, JSON.stringify(dishesArr));
 }
-
-
-
-
 
 
 
